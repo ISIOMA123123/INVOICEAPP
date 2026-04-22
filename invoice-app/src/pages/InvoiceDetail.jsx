@@ -1,7 +1,6 @@
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import invoices from "../data/invoices";
 import StatusBadge from "../components/StatusBadge";
-
 
 function InvoiceDetail() {
   const { id } = useParams();
