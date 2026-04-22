@@ -41,7 +41,9 @@ function InvoiceDetail() {
       <p><strong>Amount:</strong> £{invoice.amount}</p>
 
       <div style={{ marginTop: "20px" }}>
-        <button>Edit</button>
+        <button onClick={() => navigate(`/edit/${invoice.id}`)}>
+             Edit
+        </button>
 
         <button onClick={handleDelete}>Delete</button>
 

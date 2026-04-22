@@ -1,19 +1,28 @@
 import { useState, useContext } from "react";
+import { useParams, useNavigate } from "react-router-dom";
 import { InvoiceContext } from "../context/InvoiceContext";
-import { useNavigate } from "react-router-dom";
 
 function NewInvoice() {
+  //  CONTEXT FIRST
   const { invoices, setInvoices } = useContext(InvoiceContext);
+
+  // PARAMS
+  const { id } = useParams();
   const navigate = useNavigate();
 
-  const [form, setForm] = useState({
-    clientName: "",
-    amount: "",
-    date: "",
-    status: "Pending",
-  });
+  // FIND EXISTING INVOICE
+  const existingInvoice = invoices.find((inv) => inv.id === id);
 
-  // HANDLE INPUT CHANGE
+  //  STATE (AFTER everything above)
+  const [form, setForm] = useState(
+    existingInvoice || {
+      clientName: "",
+      amount: "",
+      date: "",
+      status: "Pending",
+    }
+  );
+
   function handleChange(e) {
     setForm({
       ...form,
@@ -21,62 +30,74 @@ function NewInvoice() {
     });
   }
 
-  // HANDLE SUBMIT
   function handleSubmit(e) {
     e.preventDefault();
 
-    // simple validation
     if (!form.clientName || !form.amount || !form.date) {
       alert("Please fill all fields");
       return;
     }
 
-    const newInvoice = {
-      id: "XM" + Math.floor(Math.random() * 10000),
-      ...form,
-      amount: Number(form.amount),
-    };
-
-    setInvoices([...invoices, newInvoice]);
+    if (existingInvoice) {
+      // UPDATE
+      const updated = invoices.map((inv) =>
+        inv.id === id ? { ...inv, ...form } : inv
+      );
+      setInvoices(updated);
+    } else {
+      // CREATE
+      const newInvoice = {
+        id: "XM" + Math.floor(Math.random() * 10000),
+        ...form,
+        amount: Number(form.amount),
+      };
+      setInvoices([...invoices, newInvoice]);
+    }
 
     navigate("/");
   }
 
   return (
     <div>
-      <h2>New Invoice</h2>
+      <h2>{existingInvoice ? "Edit Invoice" : "New Invoice"}</h2>
 
       <form onSubmit={handleSubmit}>
         <input
-          type="text"
           name="clientName"
+          value={form.clientName}
+          onChange={handleChange}
           placeholder="Client Name"
-          onChange={handleChange}
         />
 
         <input
-          type="number"
           name="amount"
-          placeholder="Amount"
+          type="number"
+          value={form.amount}
           onChange={handleChange}
+          placeholder="Amount"
         />
 
         <input
-          type="date"
           name="date"
+          type="date"
+          value={form.date}
           onChange={handleChange}
         />
 
-        <select name="status" onChange={handleChange}>
+        <select
+          name="status"
+          value={form.status}
+          onChange={handleChange}
+        >
           <option>Pending</option>
           <option>Draft</option>
+          <option>Paid</option>
         </select>
 
-        <button type="submit">Save Invoice</button>
+        <button type="submit">Save</button>
       </form>
     </div>
   );
 }
 
 export default NewInvoice;
-
