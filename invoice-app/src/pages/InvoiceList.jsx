@@ -1,4 +1,5 @@
 import invoices from "../data/invoices";
+import InvoiceCard from "../components/InvoiceCard";
 
 function InvoiceList() {
     return (

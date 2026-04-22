@@ -4,3 +4,45 @@ body {
     padding: 20px;
 }
 
+/* CARD */
+.card {
+    background: white;
+    padding: 16px;
+    border-radius: 12px;
+    margin-bottom: 15px; 
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+.card:hover {
+    transform: scale(1.02);
+}
+
+/* STATUS */
+.status {
+    padding: 5px 10px;
+    border-radius: 8px;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+/* COLORS */
+.status.pending {
+    background: #fff4e5;
+    color: orange;
+}
+
+.status.paid {
+  background: #e6fffa;
+  color: green;
+}
+
+.status.draft {
+    background: #eee;
+    color: gray;
+}
