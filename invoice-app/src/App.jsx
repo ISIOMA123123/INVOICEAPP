@@ -2,7 +2,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import { useState, useEffect } from "react";
 
-import { Routes, Route } from "react-router-dom";
+
 import InvoiceList from "./pages/InvoiceList";
 import InvoiceDetail from "./pages/InvoiceDetail";
 import NewInvoice from "./pages/NewInvoice";
