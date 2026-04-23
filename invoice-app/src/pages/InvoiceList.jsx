@@ -7,6 +7,7 @@ import InvoiceCard from "../components/InvoiceCard";
 import { useNavigate } from "react-router-dom";
 
 function InvoiceList() {
+  const navigate = useNavigate();
   const { invoices } = useContext(InvoiceContext);
   const [filter, setFilter] = useState("All");
 
@@ -21,7 +22,10 @@ function InvoiceList() {
       <h2>Invoices</h2>
 
       <div>
-        <button onClick={() => setFilter("All")}>All</button>
+        <button onClick={() => navigate("/new")}>
+          + New Invoice
+        </button>
+        <button onClick={()=> setFilter("All")}>All</button>
         <button onClick={() => setFilter("Draft")}>Draft</button>
         <button onClick={() => setFilter("Pending")}>Pending</button>
         <button onClick={() => setFilter("Paid")}>Paid</button>

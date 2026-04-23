@@ -46,3 +46,106 @@ body {
     background: #eee;
     color: gray;
 }
+
+
+.container {
+    max-width: 900px;
+    margin: auto;
+    padding: 20px;
+}
+
+@media (max-width: 768px) {
+
+    .container {
+        padding: 15px;
+    }
+
+    button {
+        width: 100%;
+    }
+
+    input,
+    select {
+        width: 100%;
+    }
+
+    article {
+        padding: 15px;
+    }
+}
+
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-content {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+}
+
+body.dark .modal-content {
+    background: #1e1e1e;
+    color: white;
+}
+
+/* BUTTON HOVER */
+button:hover {
+    opacity: 0.85;
+    transform: scale(1.02);
+}
+
+/* INVOICE CARD HOVER */
+article:hover {
+    cursor: pointer;
+    transform: scale(1.01);
+}
+
+/* INPUT FOCUS */
+input:focus,
+select:focus {
+    outline: 2px solid #7c5dfa;
+}
+
+/* SMOOTH TRANSITIONS */
+* {
+    transition: all 0.2s ease;
+}
+
+/* CARD SPACING */
+article {
+    margin-bottom: 15px;
+    border-radius: 10px;
+}
+
+.status {
+    padding: 5px 10px;
+    border-radius: 6px;
+    color: white;
+    display: inline-block;
+    width: fit-content;
+}
+
+.status.draft {
+    background: lightgray;
+}
+
+.status.pending {
+    background: lightgoldenrodyellow;
+}
+
+.status.paid {
+    background: lightgreen;
+}
+
+

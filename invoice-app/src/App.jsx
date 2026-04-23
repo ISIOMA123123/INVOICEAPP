@@ -6,9 +6,6 @@ import InvoiceDetail from "./pages/InvoiceDetail";
 import NewInvoice from "./pages/NewInvoice";
 
 
-<button onClick={() => setTheme(theme === "light" ? "dark" : "light")}>
-  Toggle Theme
-</button>
 
 
 function App() {
@@ -29,14 +26,29 @@ useEffect(() => {
 }, [theme]);
 
 
-  return (
+return (
+  <div className="container">
+
+    {/*  THEME BUTTON */}
+    <button
+      onClick={() =>
+        setTheme(theme === "light" ? "dark" : "light")
+      }
+      style={{ marginBottom: "20px" }}
+    >
+      {theme === "light" ? "🌙 Dark Mode" : "☀️ Light Mode"}
+    </button>
+
+    {/*  ROUTES (DO NOT REMOVE) */}
     <Routes>
       <Route path="/" element={<InvoiceList />} />
       <Route path="/invoice/:id" element={<InvoiceDetail />} />
       <Route path="/edit/:id" element={<NewInvoice />} />
       <Route path="/new" element={<NewInvoice />} />
     </Routes>
-  );
+
+  </div>
+);
 }
 
 export default App;

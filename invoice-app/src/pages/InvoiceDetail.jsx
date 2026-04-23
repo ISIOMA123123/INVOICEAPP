@@ -1,9 +1,12 @@
-import { useParams, useNavigate } from "react-router-dom";
-import { useContext } from "react";
+import { useState, useContext } from "react";
+import { useParams, useNavigate} from "react-router-dom";
 import { InvoiceContext } from "../context/InvoiceContext";
 import StatusBadge from "../components/StatusBadge";
 
+
 function InvoiceDetail() {
+
+  
   const { id } = useParams();
   const navigate = useNavigate();
   const { invoices, setInvoices } = useContext(InvoiceContext);
@@ -30,8 +33,22 @@ function InvoiceDetail() {
     setInvoices(updated);
   }
 
+  const [showModal, setShowModal] = useState(false);
+
   return (
+
+
+    
+
+
+
+    
     <div>
+
+      <button onClick={() => navigate(-1)}>
+         ← Go Back
+      </button>
+
       <h2>Invoice #{invoice.id}</h2>
 
       <StatusBadge status={invoice.status} />
@@ -45,7 +62,9 @@ function InvoiceDetail() {
              Edit
         </button>
 
-        <button onClick={handleDelete}>Delete</button>
+        <button onClick={() => setShowModal(true)}>
+            Delete
+        </button>
 
         {invoice.status !== "Paid" && (
           <button onClick={handleMarkPaid}>
@@ -53,6 +72,32 @@ function InvoiceDetail() {
           </button>
         )}
       </div>
+
+      {showModal && (
+  <div className="modal">
+    <div className="modal-content">
+      <p>Are you sure you want to delete this invoice?</p>
+
+      <button onClick={() => setShowModal(false)}>
+        Cancel
+      </button>
+
+      <button
+        onClick={() => {
+          const updated = invoices.filter(
+            (inv) => String(inv.id) !== String(id)
+          );
+          setInvoices(updated);
+          navigate("/");
+        }}
+      >
+        Confirm Delete
+      </button>
+    </div>
+  </div>
+)}
+
+
     </div>
   );
 }

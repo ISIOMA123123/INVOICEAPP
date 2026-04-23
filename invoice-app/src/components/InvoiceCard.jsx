@@ -30,7 +30,9 @@ function InvoiceCard({ invoice }) {
         <strong>£ {invoice.amount}</strong>
       </div>
 
-      <StatusBadge status={invoice.status} />
+      <span className={`status ${invoice.status.toLowerCase()}`}>
+        {invoice.status}
+      </span>
     </div>
   );
 }

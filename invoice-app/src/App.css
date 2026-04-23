@@ -224,3 +224,27 @@ button:hover {
   opacity: 0.8;
 }
 
+.status {
+  padding: 4px 8px;
+  border-radius: 6px;
+  font-weight: bold;
+}
+
+/* PAID */
+.status.paid {
+  background: #d4edda;
+  color: green;
+}
+
+/* PENDING */
+.status.pending {
+  background: #fff3cd;
+  color: orange;
+}
+
+/* DRAFT */
+.status.draft {
+  background: #eee;
+  color: gray;
+}
+
