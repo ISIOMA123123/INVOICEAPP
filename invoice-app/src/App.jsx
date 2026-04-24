@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 
 import { useState, useEffect } from "react";
 
@@ -41,16 +41,16 @@ return (
       {theme === "light" ? "🌙 Dark Mode" : "☀️ Light Mode"}
     </button>
 
-    {/*  ROUTES (DO NOT REMOVE) */}
+    {/*  ROUTES  */}
 
-    <BrowserRouter>
+    
     <Routes>
         <Route path="/" element={<InvoiceList />} />
         <Route path="/invoice/:id" element={<InvoiceDetail />} />
         <Route path="/edit/:id" element={<NewInvoice />} />
         <Route path="/new" element={<NewInvoice />} />
       </Routes>
-    </BrowserRouter>
+    
 
   </div>
 );
